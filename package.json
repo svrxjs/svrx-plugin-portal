@@ -1,0 +1,22 @@
+{
+  "name": "svrx-plugin-portal",
+  "version": "0.0.1",
+  "description": "portal plugin for server-x",
+  "main": "index.js",
+  "scripts": {},
+  "engines": {
+    "svrx": "~0.0.2"
+  },
+  "keywords": [
+    "svrx",
+    "svrx-plugin"
+  ],
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0",
+    "log4js": "^3.0.6",
+    "querystring": "^0.2.0",
+    "socket.io-client": "1.7.4"
+  }
+}
