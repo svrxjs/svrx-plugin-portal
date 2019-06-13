@@ -6,7 +6,7 @@
  */
 const axios = require('axios');
 const Connection = require('./connection');
-const logger = require('./utils/logger');
+// const logger = require('./utils/logger');
 
 class Portal {
   constructor(options) {
@@ -18,7 +18,7 @@ class Portal {
     const response = await this._getAddress();
     // 分配的子域名
     this.subdomain = response.data.subdomain;
-    logger.info('已获取:', this.subdomain)
+    console.log('已获取:', this.subdomain)
     this._connect();
   }
 
@@ -41,7 +41,7 @@ class Portal {
       fallback
     });
     this.connection.on('connect', () => {
-      logger.info(`可访问${subdomain}.${remoteHost}`);
+      console.log(`可访问${subdomain}.${remoteHost}`);
     });
     this.connection.on('disconnet', () => {
       // 退出程序
