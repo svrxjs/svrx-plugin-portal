@@ -6,7 +6,7 @@
  */
 const EventEmitter = require('events').EventEmitter;
 const SocketClient = require('socket.io-client');
-// const logger = require('./utils/logger');
+const logger = require('./utils/logger');
 const request = require('./utils/request');
 /**
  * 管理websocket连接
@@ -29,7 +29,7 @@ class Connection extends EventEmitter {
   }
 
   connect() {
-    console.log('connect');
+    logger.info('connect');
     this.emit('connect');
   }
 
@@ -40,10 +40,10 @@ class Connection extends EventEmitter {
    * @memberof Connection
    */
   requestLocal(req, callback) {
-    console.log('request local application');
+    logger.info('request local application');
     // 请求强制走fallback
     if (this.forceFallback(req)) {
-      console.log(req.path, 'force fallback');
+      logger.info(req.path, 'force fallback');
       return this.requestFallback(req, callback);
     } 
     this.request(req, {
@@ -63,7 +63,7 @@ class Connection extends EventEmitter {
   requestFallback(req, callback) {
     const fallback = this.fallback;
     let hostname, headers;
-    console.log('request fallback application');
+    logger.info('request fallback application');
     if (typeof fallback === "string") {
       hostname = fallback;
     } else {
@@ -151,13 +151,13 @@ class Connection extends EventEmitter {
   }
 
   onError(e) {
-    console.log('error');
+    logger.info('error');
     logger.error(e);
     this.socket.close();
   }
 
   disconnect() {
-    console.log('disconnect');
+    logger.info('disconnect');
     delete this.socket;
     this.emit('disconnect');
   }
