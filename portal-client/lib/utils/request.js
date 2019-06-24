@@ -53,7 +53,7 @@ module.exports = (req, {
         } else {
           resolve({
             ...data,
-            body: body.toString()
+            body
           });
         }
       });
