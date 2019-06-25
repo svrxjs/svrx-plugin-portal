@@ -19,7 +19,8 @@ module.exports = (req, {
       port,
       path: req.path,
       method: req.method,
-      headers: req.headers
+      headers: req.headers,
+      followRedirect: false
     }
     options.headers.referer = options.headers.referer ? options.headers.referer.replace(options.headers.host, hostname) : '';
     options.headers.host = hostname;

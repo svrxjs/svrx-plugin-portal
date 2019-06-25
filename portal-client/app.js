@@ -25,5 +25,5 @@ module.exports = ({
         localPort,
         fallback
     });
-    portal.init({ maxConnectionCount });
+    return portal.init({ maxConnectionCount });
 }

@@ -1,6 +1,6 @@
 {
   "name": "svrx-plugin-portal",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "portal plugin for server-x",
   "main": "index.js",
   "scripts": {},

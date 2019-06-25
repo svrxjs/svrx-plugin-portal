@@ -6,7 +6,7 @@
  */
 const EventEmitter = require('events').EventEmitter;
 const SocketClient = require('socket.io-client');
-const logger = require('./utils/logger');
+// const logger = require('./utils/logger');
 const request = require('./utils/request');
 /**
  * 管理websocket连接
@@ -29,8 +29,8 @@ class Connection extends EventEmitter {
   }
 
   connect() {
-    logger.info('connect');
-    this.emit('connect');
+    // logger.info('connect');
+    this.emit('connect', this);
   }
 
   /**
@@ -40,10 +40,11 @@ class Connection extends EventEmitter {
    * @memberof Connection
    */
   requestLocal(req, callback) {
-    logger.info('request local application');
+    // logger.info('request local application');
+    this.emit('request', this);
     // 请求强制走fallback
     if (this.forceFallback(req)) {
-      logger.info(req.path, 'force fallback');
+      // logger.info(req.path, 'force fallback');
       return this.requestFallback(req, callback);
     } 
     this.request(req, {
@@ -63,7 +64,8 @@ class Connection extends EventEmitter {
   requestFallback(req, callback) {
     const fallback = this.fallback;
     let hostname, headers;
-    logger.info('request fallback application');
+    // logger.info('request fallback application');
+    this.emit('requestFullback', this);
     if (typeof fallback === "string") {
       hostname = fallback;
     } else {
@@ -117,7 +119,8 @@ class Connection extends EventEmitter {
       }).then((res) => {
         resolve(res);
       }).catch((error) => {
-        logger.error(error);
+        // logger.error(error);
+        this.emit('error', error);
         reject({
           body: {
             statusCode: 500,
@@ -151,13 +154,14 @@ class Connection extends EventEmitter {
   }
 
   onError(e) {
-    logger.info('error');
-    logger.error(e);
+    // logger.info('error');
+    // logger.error(e);
+    this.emit('error', e);
     this.socket.close();
   }
 
   disconnect() {
-    logger.info('disconnect');
+    // logger.info('disconnect');
     delete this.socket;
     this.emit('disconnect');
   }
