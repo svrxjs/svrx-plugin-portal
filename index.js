@@ -31,10 +31,10 @@ module.exports = {
 
         const connect = await portal(params);
         connect.on('connect', connect => {
-          logger.info(`Serving at ${connect.subdomain}.${connect.remoteHost}`);
+          logger.notify(`Serving at ${connect.subdomain}.${connect.remoteHost}`);
         });
         connect.on('disconnect', () => {
-          logger.info('disconnect');
+          logger.notify('disconnect');
         });
         connect.on('error', error => {
           logger.error(error);
