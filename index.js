@@ -37,7 +37,9 @@ module.exports = {
           logger.notify('disconnect');
         });
         connect.on('error', error => {
-          logger.error(error);
+          if (error && !~error.message.indexOf('socket hang up')) {
+            logger.error(error);
+          }
         });
       });
     }
