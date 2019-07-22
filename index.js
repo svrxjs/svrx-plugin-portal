@@ -32,7 +32,7 @@ module.exports = {
         const connect = await portal(params);
         connect.on('connect', connect => {
           const isHttps = config.get('$.https');
-          logger.notify(`Serving at ${isHttps ? 'http' : 'https'}://${connect.subdomain}.${connect.remoteHost}`);
+          logger.notify(`Serving at ${isHttps ? 'https' : 'http'}://${connect.subdomain}.${connect.remoteHost}`);
         });
         connect.on('disconnect', () => {
           logger.notify('disconnect');
