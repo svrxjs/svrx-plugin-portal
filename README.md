@@ -1,5 +1,7 @@
 # svrx-plugin-portal
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/x-orpheus/svrx-plugin-portal.svg)](https://greenkeeper.io/)
+
 The portal plugin for svrx. Provide intranet penetration
 
 ```bash
